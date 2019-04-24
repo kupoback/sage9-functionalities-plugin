@@ -1,4 +1,4 @@
-# Custom Functions
+# Custom Functions Plugin
 
 The purpose of this plugin is to provide developers with a location to include SITE specific functions that by best practices, should live independently of the theme. This plugin offers support for modular structure in the case of a location for admin functionality and public or frontend functionality. This plugin can be extended to allow for even further organization within each of those directories based on the developers necessities.
 
