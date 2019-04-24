@@ -74,7 +74,7 @@ class CF_Plugin_Admin
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/js/cf-admin.min.js', ['jquery'], $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-admin.min.js', ['jquery'], $this->version, true);
 
 	}
 

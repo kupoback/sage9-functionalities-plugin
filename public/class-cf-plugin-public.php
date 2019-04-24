@@ -63,7 +63,7 @@ class CF_Plugin_Public
 	 */
 	public function enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/css/cf-public.min.css', [], $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-public.min.css', [], $this->version, 'all');
 	}
 
 	/**
@@ -73,7 +73,7 @@ class CF_Plugin_Public
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/js/cf-public.min.js', ['jquery'], $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-public.min.js', ['jquery'], $this->version, true);
 	}
 
 	public function cf_template_example()

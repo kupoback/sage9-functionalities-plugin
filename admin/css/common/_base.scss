@@ -1,129 +1,69 @@
-#cf_plugin_media-container {
-	position: relative;
-	float:    left;
-	.helper {
-		display:    block;
-		width:      100%;
-		float:      left;
-		margin-top: 10px;
-	}
-	.cf_plugin-icon {
-		display:         inline-block;
-		height:          36px;
-		width:           36px;
-		border:          transparent solid 1px;
-		border-radius:   100%;
-		font-size:       16px;
-		line-height:     36px;
-		margin-left:     5px;
-		margin-top:      0;
-		text-align:      center;
-		text-decoration: none;
-		vertical-align:  top;
-		position:        relative;
-		cursor:          pointer;
-		&:before {
-			content:         '';
-			display:         block;
-			position:        absolute;
-			top:             5px;
-			left:            5px;
-			right:           5px;
-			bottom:          5px;
-			width:           26px;
-			height:          26px;
-			background:      transparent center center;
-			background-size: cover;
-			transition:      transform .125s ease;
-		}
+//  admin_styles
+// ======================================
+i.mce-i-external-link:before {
+	content:         "\f08e";
+	font-family:     FontAwesome;
+	font-style:      normal;
+	font-weight:     normal;
+	text-decoration: inherit;
+	color:           $dark-grey;
+	font-size:       1em;
+}
+
+.mce-content-body {
+	a.blue-btn,
+	a.blue-btn[data-mce-selected] {
+		display:            inline-block;
+		width:              auto;
+		border:             none;
+		background-color:   $light-blue;
+		color:              $white;
+		letter-spacing:     0.2px;
+		text-align:         center;
+		padding:            14px 28px !important;
+		font-size:          16px;
+		border-radius:      50px;
+		-webkit-transition: 0.6s all;
+		-o-transition:      0.6s all;
+		transition:         0.6s all;
+		cursor:             pointer;
 		&:hover {
-			&:before {
-				transform: scale(1.1);
-			}
+			color:           $white;
+			background:      $very-light-blue !important;
+			text-decoration: underline;
 		}
-		&.-change {
-			background-color: #4a5dd6;
-			&:before {
-				background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAyOTkuOTk4IDI5OS45OTgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI5OS45OTggMjk5Ljk5ODsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxnPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xNDkuOTk1LDAuMDAxQzY3LjE1NiwwLjAwMSwwLDY3LjE2LDAsMTQ5Ljk5OXM2Ny4xNTYsMTQ5Ljk5NywxNDkuOTk1LDE0OS45OTdzMTUwLjAwMy02Ny4xNjEsMTUwLjAwMy0xNDkuOTk3IEMyOTkuOTk3LDY3LjE1NywyMzIuODM0LDAuMDAxLDE0OS45OTUsMC4wMDF6IE03MC43NSwyMjYuODQ0Yy0zLjk4MSwwLTcuMjA1LTMuMjIxLTcuMjA1LTcuMjAyVjgwLjM1MyBjMC0zLjk3OSwzLjIyNC03LjIwMiw3LjIwNS03LjIwMmgxNTguNDk3YzMuOTgxLDAsNy4yMDUsMy4yMjQsNy4yMDUsNy4yMDJ2NzcuMDgxaC0xMC43OTVoLTYuMTQ3Vjg5LjgzNEg4MC4zMjN2OTMuMDI3aDcuOTQ5IGwzMi4xMTktNTAuMDg3bDIxLjQ2NSwzMy40NjhsMTAuNjYsMTYuNjJoOS4yNDFsLTE1LjI4MS0yMy44MjdsOS45NTktMTUuNTNsMjUuMjQxLDM5LjM1NWgxMC4xNzd2OC4zNzV2MTYuNDEydjEwLjM3NGgxMC4zNzQgaDEzLjA1M3Y4LjgyNEg3MC43NXogTTIwNy4yNjQsMTIxLjA0MmMwLDguMjMyLTYuNjc2LDE0LjkwOC0xNC45MDgsMTQuOTA4cy0xNC45MDgtNi42NzYtMTQuOTA4LTE0LjkwOCBzNi42NzYtMTQuOTA4LDE0LjkwOC0xNC45MDhTMjA3LjI2NCwxMTIuODEzLDIwNy4yNjQsMTIxLjA0MnogTTI0Mi4wNjcsMjA3LjY0NnYyMy40MjNIMjI1LjY2di00LjIyNXYtMTkuMTk4aC0yMy40Mjh2LTE2LjQxMiBoMjMuNDI4di0yMy40MjNoMTAuNzk1aDUuNjEzdjIzLjQyM2gyMy40MjV2MTYuNDEySDI0Mi4wNjd6Ii8+PC9nPjwvZz48L3N2Zz4=);
-			}
-		}
-		&.-remove {
-			background-color: #D75A4A;
-			&:before {
-				background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUwIDUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MCA1MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxjaXJjbGUgc3R5bGU9ImZpbGw6I0Q3NUE0QTsiIGN4PSIyNSIgY3k9IjI1IiByPSIyNSIvPjxwb2x5bGluZSBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojRkZGRkZGO3N0cm9rZS13aWR0aDoyO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIgcG9pbnRzPSIxNiwzNCAyNSwyNSAzNCwxNiIvPjxwb2x5bGluZSBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojRkZGRkZGO3N0cm9rZS13aWR0aDoyO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIgcG9pbnRzPSIxNiwxNiAyNSwyNSAzNCwzNCIvPjxnPjwvZz48L3N2Zz4=);
-			}
+		&:focus {
+			background:         $dark-blue !important;
+			box-shadow:         inset 0 1px 5px 0 rgba($black, 0.2);
+			color:              $white;
 		}
 	}
-	.has-value {
-		position: relative;
-
-		img {
-			max-width:  100%;
-			width:      auto;
-			height:     auto;
-			display:    block;
-			min-width:  30px;
-			min-height: 30px;
-			background: #f1f1f1;
-			margin:     0;
-			padding:    0;
+	a.green-btn,
+	a.green-btn[data-mce-selected] {
+		display:            inline-block;
+		font-weight:        bold;
+		letter-spacing:     2px;
+		height:             36px;
+		width:              130px;
+		text-transform:     uppercase;
+		position:           relative;
+		transform:          perspective(1px) translateZ(0);
+		transition:         .5s;
+		background:         $green;
+		font-size:          14px;
+		color:              $white;
+		text-align:         center;
+		line-height:        34px;
+		border:             none;
+		border-radius:      25px;
+		-webkit-appearance: none;
+		&:hover {
+			background: $light-green;
+			color:      $white;
 		}
-		.cf_plugin-icon-hover {
-			padding:    5px;
-			text-align: right;
-			z-index:    1;
-		}
-		&.image-type {
-			float: left;
-			.cf_plugin-icon-hover {
-				position: absolute;
-				top:      0;
-				right:    0;
-				display:  none;
-			}
-			&:hover {
-				.cf_plugin-icon-hover {
-					display: block;
-				}
-			}
-		}
-		&.file-type {
-			float:       left;
-			display:     flex;
-			flex-flow:   row nowrap;
-			align-items: center;
-			p {
-
-			}
-			.cf_plugin-icon-hover {
-				display: block;
-			}
-		}
-		&:after {
-			content: '';
-			display: table;
-			clear:   both;
+		&:focus {
+			background: $dark-green;
+			box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, 0.20);
 		}
 	}
-	.no-value {
-
-		display:     flex;
-		flex-flow:   row nowrap;
-		align-items: center;
-		p {
-
-			flex:   0 0 auto;
-			margin: 0;
-			&:first-of-type {
-				margin-right: 20px;
-			}
-		}
-		&:after {
-			content: '';
-			display: table;
-			clear:   both;
-		}
-	}
-	.hide { display: none !important; }
-
 }

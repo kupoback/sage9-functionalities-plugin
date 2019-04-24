@@ -128,6 +128,11 @@ class CF_Plugin {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cf-plugin-admin-custom-taxonomies.php';
 
 		/**
+		 * This class adds a counter to the textarea box if a char limit is defined
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cf-plugin-admin-acf-input-counter.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
@@ -175,6 +180,10 @@ class CF_Plugin {
 
 
 		$plugin_admin_ctax = new CF_Plugin_Admin_CTax( $this->get_plugin_name(), $this->get_version() );
+
+		$plugin_admin_acf_input = new ACF_Input_Counter( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_action( 'acf/render_field/type=text', $plugin_admin_acf_input, 'render_field', 20, 1 );
+		$this->loader->add_action( 'acf/render_field/type=textarea', $plugin_admin_acf_input, 'render_field', 20, 1 );
 
 	}
 
