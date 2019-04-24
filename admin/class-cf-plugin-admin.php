@@ -63,7 +63,7 @@ class CF_Plugin_Admin
 	 */
 	public function enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-admin.min.css', [], $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-admin.min.css', ['wp-edit-blocks'], '', 'all');
 
 	}
 
@@ -74,7 +74,7 @@ class CF_Plugin_Admin
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-admin.min.js', ['jquery'], $this->version, true);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-admin.min.js', ['jquery', 'wp-blocks', 'wp-i18n', 'wp-element'], null, true);
 
 	}
 
