@@ -43,6 +43,16 @@ In the root of this plugin has a couple files that can be adjusted. They are:
 ### Public
 This folder is reserved for the front facing portion of the site. What this can be used for is anything from creating the front-end Nav Walker to customizing actions or filters for content. Generally if the functionality you're adding affects the front end, it should live here in either the `class-cf-plugin-public.php` or within a respected, relative `.php` file in this folder.
 
+#### Public Folders
+
+`css` - This is where the SASS stylesheets reside.
+
+`js` - In here is a `cf-public.js` which can remain blank, and you can create folders as you want, and insert your js files within.
+
+`partials` - Supposedly reserved for `HTML` markup for the front-end, but usually reserved for plugins with one goal. May remove in the future if remains unsued.
+
+`templates` - If you use shortcodes, you can place your templates within here for easier organization and use of the plugins `CF_Template_Loader` class.
+
 #### Public Files
 `class-cf-plugin-public.php` - This is where you can include all your public/front-end functionality. You do not need to organize all the functions into appropriate classes, but organization can be helpful.
 
@@ -50,6 +60,15 @@ This folder is reserved for the front facing portion of the site. What this can 
 
 ### Admin
 This folder is reserved for the admin or back-end of the site. What this is reserved for is anything relative to the admin such as custom post type, custom taxonomies, custom meta fields, etc. If the functionality that you're adding to the site requires integration/interaction within the admin, it should live here. They can live all within the `class-cf-plugin-admin.php` file or with a respected, relative `.php` file in this folder.
+
+#### Admin Folders
+`css` - This is where the SASS stylesheets reside.
+
+`js` - In here is a `cf-admin.js` which can remain blank, and you can create folders as you want, and insert your js files within.
+
+`options-page` - See **Options-Page Directory** for file listings, but this folder is used to maintain your option page(s).
+
+`partials` - Supposedly reserved for `HTML` markup for the admin, but usually reserved for plugins with one goal. May remove in the future if remains unsued.
 
 #### Admin Files
 `class-cf-plugin-admin.php` - This is where you can include your admin functionality. You do not need to organize all the functions into appropriate classes, but organization can be helpful.
