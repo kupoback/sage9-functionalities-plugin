@@ -1,18 +1,34 @@
 <?php
 /**
  * File Name: class-cf-plugin-admin-acf-input-counter.php
- * Description:
+ * Description: Plugin merged in from @Hube2 with modifications
  * Version:
- * Author: Nick Makris
- * Author URI: buildsomething@cliquestudios.com
+ * Author: @Hube2
+ * Modified By: Nick Makris
+ *
+ * @link https://github.com/Hube2/acf-input-counter
  *
  */
 
 class ACF_Input_Counter
 {
-
+	
+	/**
+	 * The ID of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string $plugin_name The ID of this plugin.
+	 */
 	private $plugin_name;
-
+	
+	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string $version The current version of this plugin.
+	 */
 	private $version;
 
 	public function __construct($plugin_name, $version) {
@@ -76,24 +92,18 @@ class ACF_Input_Counter
 		$display = apply_filters( 'acf-input-counter/display', $display );
 		$display = str_replace( '%%len%%', '<span class="count">' . $len . '</span>', $display );
 		$display = str_replace( '%%max%%', $max, $display );
-		?>
-		<span class="char-count">
-					<?php
-					echo $display;
-					?>
-				</span>
-		<?php
+		
+		printf('<span class="char-count">%s</span>', $display);
+		
 	} // end public function render_field
 
 	private function check( $allow, $exist ) {
 		// if there is anything in $allow
 		// see if any of those values are in $exist
 		$intersect = array_intersect( $allow, $exist );
-		if ( count( $intersect ) ) {
-			return true;
-		}
-
-		return false;
+		
+		return count ( $intersect ) ? true : false;
+		
 	} // end private function check
 
 }

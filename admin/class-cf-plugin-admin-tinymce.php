@@ -35,7 +35,7 @@ class CF_Plugin_Admin_TinyMCE {
 	}
 	
 	/**
-	 * Function Name: cscf_row_two_shifts
+	 * Function Name: mce_row_two_shift
 	 * Description: Add the TinyMCE ID names to shift them out of their slot to place them
 	 *              within another
 	 *
@@ -43,7 +43,7 @@ class CF_Plugin_Admin_TinyMCE {
 	 *
 	 * @return mixed
 	 */
-	public function cscf_row_two_shifts($buttons) {
+	public function mce_row_two_shift($buttons) {
 		array_unshift($buttons, 'hr');
 		array_unshift($buttons, 'pastetext');
 		array_unshift($buttons, 'removeformat');
@@ -52,14 +52,14 @@ class CF_Plugin_Admin_TinyMCE {
 	}
 	
 	/**
-	 * Function Name: cscf_mce_before_init
+	 * Function Name: mce_custom_styles
 	 * Description: Custom Style Format items
 	 *
 	 * @param $settings
 	 *
 	 * @return mixed
 	 */
-	public function cscf_mce_before_init($settings) {
+	public function mce_custom_styles($settings) {
 		$style_formats = [];
 		
 		/**
@@ -141,14 +141,14 @@ class CF_Plugin_Admin_TinyMCE {
 	}
 	
 	/**
-	 * Function Name: cscf_remove_btns_row_one
+	 * Function Name: mce_remove_row_one_btns
 	 * Description: This function removes items based on their ID from row 1
 	 *
 	 * @param $buttons
 	 *
 	 * @return mixed
 	 */
-	function cscf_remove_btns_row_one($buttons) {
+	function mce_remove_row_one_btns($buttons) {
 		$remove_buttons = [
 			// format dropdown menu for <p>, headings, etc
 			'formatselect',
@@ -164,14 +164,14 @@ class CF_Plugin_Admin_TinyMCE {
 	}
 	
 	/**
-	 * Function Name: cscf_remove_btns_row_two
+	 * Function Name: mce_remove_row_two_btns
 	 * Description: This function removes items based on their ID from row 2
 	 *
 	 * @param $buttons
 	 *
 	 * @return mixed
 	 */
-	public function cscf_remove_btns_row_two ($buttons) {
+	public function mce_remove_row_two_btns ($buttons) {
 		$remove_buttons = [
 			'underline',
 			'hr',
