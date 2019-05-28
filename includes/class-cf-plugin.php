@@ -126,6 +126,11 @@ class CF_Plugin {
 		 * The class responsible for defining all custom taxonomies
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cf-plugin-admin-custom-taxonomies.php';
+		
+		/**
+		 * The class responsible for TinyMCE items
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cf-plugin-admin-tinymce.php';
 
 		/**
 		 * This class adds a counter to the textarea box if a char limit is defined
@@ -184,6 +189,16 @@ class CF_Plugin {
 		$plugin_admin_acf_input = new ACF_Input_Counter( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'acf/render_field/type=text', $plugin_admin_acf_input, 'render_field', 20, 1 );
 		$this->loader->add_action( 'acf/render_field/type=textarea', $plugin_admin_acf_input, 'render_field', 20, 1 );
+		
+		/**
+		 * Uncomment to activate the function needed
+		 * @TODO Update this function to incorporate settings for activation
+		 */
+		$plugin_admin_tinymce = new CF_Plugin_Admin_TinyMCE($this->get_plugin_name(), $this->get_version());
+//		$this->loader->add_filter('mce_buttons', $plugin_admin_tinymce, 'cscf_row_two_shifts');
+//		$this->loader->add_filter('tiny_mce_before_init', $plugin_admin_tinymce,'cscf_mce_before_init');
+//		$this->loader->add_filter('mce_buttons', $plugin_admin_tinymce,'cscf_remove_btns_row_one');
+//		$this->loader->add_filter('mce_buttons_2', $plugin_admin_tinymce,'cscf_remove_btns_row_two');
 
 	}
 
