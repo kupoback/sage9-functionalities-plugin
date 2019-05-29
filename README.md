@@ -6,7 +6,7 @@ This plugin contains a `gulpfile.js` which includes a `sass`, and `js` compiler 
 
 ## Uses
  
-####For:
+#### For:
 
 * Custom Post Types
 * Custom Taxonomies
