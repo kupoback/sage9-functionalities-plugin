@@ -1,7 +1,7 @@
 <?php
 
 class CF_Plugin_Admin_TinyMCE {
-	
+
 	/**
 	 * The ID of this plugin.
 	 *
@@ -10,7 +10,7 @@ class CF_Plugin_Admin_TinyMCE {
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
 	private $plugin_name;
-	
+
 	/**
 	 * The version of this plugin.
 	 *
@@ -19,7 +19,7 @@ class CF_Plugin_Admin_TinyMCE {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
-	
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -28,12 +28,12 @@ class CF_Plugin_Admin_TinyMCE {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-		
+
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		
+
 	}
-	
+
 	/**
 	 * Function Name: mce_row_two_shift
 	 * Description: Add the TinyMCE ID names to shift them out of their slot to place them
@@ -50,7 +50,7 @@ class CF_Plugin_Admin_TinyMCE {
 		array_unshift($buttons, 'styleselect');
 		return $buttons;
 	}
-	
+
 	/**
 	 * Function Name: mce_custom_styles
 	 * Description: Custom Style Format items
@@ -61,7 +61,7 @@ class CF_Plugin_Admin_TinyMCE {
 	 */
 	public function mce_custom_styles($settings) {
 		$style_formats = [];
-		
+
 		/**
 		 * Original Styles for Paragraph tags, and Header 2 - 6 tags
 		 * You can edit the style_formats to match the site if needed.
@@ -116,30 +116,30 @@ class CF_Plugin_Admin_TinyMCE {
 				],
 			],
 		];
-		
+
 		/**
 		 * * Add additional style options here. One is commented out for reference,
 		 * or visit the link
 		 * @link https://www.tiny.cloud/docs/configure/content-formatting/#formats
 		 */
 		$additional_styles = [
-			//			[
-			//				'title'         => 'Orange Button',
-			//				'selector'      => 'a',
-			//				'classes'       => 'round-red-btn',
-			//				'style_formats' => [
-			//					'color' => '#ff6036',
-			//				],
-			//			],
+			// [
+			//   'title'         => 'Orange Button',
+			//   'selector'      => 'a',
+			//	 'classes'       => 'round-red-btn',
+			//	 'style_formats' => [
+			//	   'color' => '#ff6036',
+			//	  ],
+			// ],
 		];
-		
+
 		array_push($style_formats, $og_style_formats);
 		array_push($style_formats, $additional_styles);
-		
+
 		$settings['style_formats'] = json_encode($style_formats);
 		return $settings;
 	}
-	
+
 	/**
 	 * Function Name: mce_remove_row_one_btns
 	 * Description: This function removes items based on their ID from row 1
@@ -162,7 +162,7 @@ class CF_Plugin_Admin_TinyMCE {
 		}
 		return $buttons;
 	}
-	
+
 	/**
 	 * Function Name: mce_remove_row_two_btns
 	 * Description: This function removes items based on their ID from row 2
@@ -199,5 +199,5 @@ class CF_Plugin_Admin_TinyMCE {
 		}
 		return $buttons;
 	}
-	
+
 }

@@ -22,7 +22,7 @@
  */
 class CF_Plugin_Admin
 {
-	
+
 	/**
 	 * The ID of this plugin.
 	 *
@@ -31,7 +31,7 @@ class CF_Plugin_Admin
 	 * @var      string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
-	
+
 	/**
 	 * The version of this plugin.
 	 *
@@ -40,7 +40,7 @@ class CF_Plugin_Admin
 	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
-	
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -52,8 +52,9 @@ class CF_Plugin_Admin
 	public function __construct($plugin_name, $version) {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
+
 	}
-	
+
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
@@ -62,7 +63,7 @@ class CF_Plugin_Admin
 	public function enqueue_styles() {
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-admin.min.css', ['wp-edit-blocks'], '', 'all');
 	}
-	
+
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
@@ -71,7 +72,7 @@ class CF_Plugin_Admin
 	public function enqueue_scripts() {
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'dist/cf-admin.min.js', ['jquery', 'wp-blocks', 'wp-i18n', 'wp-element'], null, true);
 	}
-	
+
 	/**
 	 * Function Name: add_menu_page
 	 * Description: Creates a location within the wp-admin for the options page OR the location to add the sub_options page
@@ -87,9 +88,9 @@ class CF_Plugin_Admin
 			'cf-plugin-settings', // $menu_slug
 			[$this, 'options_page'], // $function
 			'', // $icon
-			35 // $position
+			80 // $position
 		);
-		
+
 		//		add_submenu_page(
 		//			'', // $parent_slug
 		//			'', // $page_title
@@ -99,7 +100,7 @@ class CF_Plugin_Admin
 		//			[$this, ''] // $function
 		//		);
 	}
-	
+
 	/**
 	 * Function Name: options_sections
 	 * Description: Declaration of each section on the Options Page
@@ -110,15 +111,15 @@ class CF_Plugin_Admin
 		$sections = [
 			[
 				'id'       => 'options_section_one',
-				'title'    => '',
+				'title'    => 'Custom Post Type',
 				'callback' => [
 					$this,
 					'options_sections_callback',
 				],
-				'function' => 'options_fields',
+				'function' => 'cf_plugin_fields',
 			],
 		];
-		
+
 		// Run through each section and register them
 		foreach ($sections as $section) {
 			add_settings_section(
@@ -129,7 +130,7 @@ class CF_Plugin_Admin
 			);
 		}
 	}
-	
+
 	/**
 	 * Function Name: options_fields
 	 * Description: The declaration of fields to be used within an options page
@@ -152,8 +153,21 @@ class CF_Plugin_Admin
 		 * @default     string|array    the default value of the field
 		 * @helper      string          the helper text that appears below the input
 		 */
-		$fields = [];
-		
+		$fields = [
+			[
+				'uid'       => 'cf_team_cpt',
+				'title'     => 'Team Custom Post Type',
+				'label_for' => 'cf_team_cpt',
+				'section'   => 'options_section_one',
+				'type'      => 'checkbox',
+				'options'   => [
+					'enable' => 'Enable',
+				],
+				'default'   => '',
+				'helper'    => 'Enable or Disable the Team Custom Post Type.',
+			],
+		];
+
 		if (!empty($fields)) {
 			foreach ($fields as $field) {
 				add_settings_field(
@@ -167,12 +181,12 @@ class CF_Plugin_Admin
 					$field['section'],
 					$field
 				);
-				
+
 				register_setting('cf_plugin_fields', $field['uid']);
 			}
 		}
 	}
-	
+
 	/**
 	 * Function Name: main_menu
 	 * Description: Grabs the menu page
@@ -182,7 +196,7 @@ class CF_Plugin_Admin
 	public function main_menu() {
 		include(plugin_dir_path(__FILE__) . '/options-page/main-menu.php');
 	}
-	
+
 	/**
 	 * Function Name: options_page
 	 * Description: Grabs the options page
@@ -192,7 +206,7 @@ class CF_Plugin_Admin
 	public function options_page() {
 		include(plugin_dir_path(__FILE__) . '/options-page/options-page.php');
 	}
-	
+
 	/**
 	 * Function Name: options_sections_callback
 	 * Description: Creates the sections
@@ -202,10 +216,10 @@ class CF_Plugin_Admin
 	 * @since 1.0.0
 	 *
 	 */
-	private function options_sections_callback($args) {
+	function options_sections_callback($args) {
 		include(plugin_dir_path(__FILE__) . '/options-page/options-sections.php');
 	}
-	
+
 	/**
 	 * Function Name: options_fields_callback
 	 * Description: Creates the fields
@@ -215,16 +229,16 @@ class CF_Plugin_Admin
 	 * @since 1.0.0
 	 *
 	 */
-	private function options_fields_callback($args) {
+	function options_fields_callback($args) {
 		include(plugin_dir_path(__FILE__) . '/options-page/options-fields.php');
 	}
-	
+
 	/**
 	 * Function Name: team_metabox
 	 * Description: Creates a new metabox for custom meta fields
 	 */
 	public function team_metabox() {
-		
+
 		$screen = 'team';
 		if ($screen === 'team') {
 			add_meta_box(
@@ -240,7 +254,7 @@ class CF_Plugin_Admin
 			);
 		}
 	}
-	
+
 	/**
 	 * Function Name: team_metabox_html
 	 * Description: The meta field creation and execution of HTML
@@ -248,12 +262,12 @@ class CF_Plugin_Admin
 	 * @param $post
 	 */
 	public function team_metabox_html($post) {
-		
+
 		if (get_post_type($post->ID) !== 'team')
 			return;
-		
+
 		$post_id = get_the_ID();
-		
+
 		$return_markup = [];
 		// State Array
 		$fields = [
@@ -279,19 +293,19 @@ class CF_Plugin_Admin
 			//	 'class' => 'one-half',
 			// ],
 		];
-		
+
 		wp_nonce_field('cscf_plugin_nonce_' . $post_id, 'cscf_plugin_nonce');
-		
+
 		foreach ($fields as $field) {
 			$markup = '';
 			$value  = get_post_meta($post->ID, $field['value'], true);
-			
+
 			$type  = isset($field['type']) ? $field['type'] : '';
 			$fid   = isset($field['euid']) ? $field['euid'] : '';
 			$title = isset($field['title']) ? $field['title'] : '';
 			$class = isset($field['class']) ? $field['class'] : '';
 			$val   = isset($field['value']) ? $field['value'] : '';
-			
+
 			switch ($type) {
 				case 'text' :
 				case 'number' :
@@ -300,36 +314,36 @@ class CF_Plugin_Admin
 						$atts = 'readonly';
 						$val  = $fid;
 					}
-				
+
 				$markup = sprintf('<input type="%1$s" name="%2$s" id="%2$s" value="%3$s" %5$s aria-autocomplete="none" autocomplete="off" aria-labelledby="%4$s" title="%4$s" placeholder="%4$s" />', $type, $val, $value ?: '', $title, $atts);
 					break;
 			}
-			
+
 			$label = sprintf(
 				'<div class="team-label"><label for="$1$s">%2$s</label></div>',
 				$fid,
 				$title
 			);
-			
+
 			$input = sprintf(
 				'<div class="team-%s">%s</div>',
 				$type,
 				$markup
 			);
-			
+
 			$markup = sprintf(
 				'<div class="team-field team-%1$s %3$s">%2$s</div>',
 				$fid,
 				$label . $input,
 				$class
 			);
-			
+
 			array_push($return_markup, $markup);
 		}
-		
+
 		printf('<div class="team-elements-inside" id="team-elements"><div class="team-row">%s</div></div>', implode('', $return_markup));
 	}
-	
+
 	/**
 	 * Function Name: save_team_meta_fields
 	 * Description: All the custom fields for the Team post type saved in one spot
@@ -337,25 +351,25 @@ class CF_Plugin_Admin
 	 * @param $post_id
 	 */
 	function save_team_meta_fields($post_id) {
-		
+
 		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
 			return;
 		if (!isset($_POST['cscf_plugin_nonce']) || !wp_verify_nonce($_POST['cscf_plugin_nonce'], 'cscf_plugin_nonce_' . $post_id))
 			return;
 		if (!current_user_can('edit_post', $post_id))
 			return;
-		
+
 		$custom_fields = [
 			['id' => '_team_position'],
 		];
-		
+
 		foreach ($custom_fields as $cf) {
-			
+
 			if (isset($_POST[$cf['id']]))
 				update_post_meta($post_id, $cf['id'], $_POST[$cf['id']]);
 			else
 				delete_post_meta($post_id, $cf['id']);
 		}
 	}
-	
+
 }

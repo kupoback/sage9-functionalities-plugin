@@ -15,8 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Custom Functionality Plugin
  * Plugin URI:        #
- * Description:       This plugin is used for a replacement of what one would find in a themes function file, which relates to a
- * sites functionality over that of a themes functionality.
+ * Description:       This plugin is used for a replacement of what one would find in a themes function file, which relates to a sites functionality over that of a themes functionality. Includes a Team cpt.
  * Version:           1.0.0
  * Author:            Nick Makris | Clique Studios
  * Author URI:        https://cliquestudios.com/
