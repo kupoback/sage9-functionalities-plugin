@@ -120,7 +120,7 @@ function sassCompile( $read, $write ) {
  */
 function jsCompile( $filename, $read, $write ) {
 	return function jsCompiler( done ) {
-		src( [ `${ $read }/**/*.js*` ] )
+		src( [ `${ $read }.js` ] )
 			.pipe( plumber( {
 				errorHandler: handleError,
 			} ) )
@@ -168,10 +168,10 @@ function jsCompile( $filename, $read, $write ) {
 const adminCSS = sassCompile( cssDec.admin.read, "./admin/dist" );
 const publicCSS = sassCompile( cssDec.public.read, writeDec.public );
 const adminJS = jsCompile(
-	jsDec.admin.fileName, jsDec.admin.read, "./admin/dist"
+	jsDec.admin.fileName, jsDec.admin.read + jsDec.admin.fileName, "./admin/dist"
 );
 const publicJS = jsCompile(
-	jsDec.public.fileName, jsDec.public.read, writeDec.public
+	jsDec.public.fileName, jsDec.public.read + jsDec.public.fileName, writeDec.public
 );
 
 /**
