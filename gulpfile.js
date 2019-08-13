@@ -9,7 +9,8 @@ const {
 
 // Gulp Plugins
 const autoprefixer = require( "autoprefixer" );
-const babel = require( "gulp-babel" );
+const babel = require('rollup-plugin-babel');
+const commonjs = require('rollup-plugin-commonjs');
 const concat = require( "gulp-concat" );
 const cssnano = require( "cssnano" );
 const eslint = require( "gulp-eslint" );
@@ -18,7 +19,9 @@ const gulpIf = require( "gulp-if" );
 const flatten = require( "gulp-flatten" );
 const plumber = require( "gulp-plumber" );
 const postcss = require( "gulp-postcss" );
+const resolve = require('rollup-plugin-node-resolve');
 const rename = require( "gulp-rename" );
+const rollup = require('gulp-better-rollup');
 const sass = require( "gulp-sass" );
 const sourcemaps = require( "gulp-sourcemaps" );
 const terser = require( "gulp-terser" );
@@ -133,6 +136,13 @@ function jsCompile( $filename, $read, $write ) {
 				console.log( `Total Errors: ${ results.errorCount }` );
 			} ) )
 			.pipe( eslint.failAfterError() )
+			.pipe(rollup({
+				plugins : [
+					babel(),
+					resolve(),
+					commonjs()
+				]},'umd'
+			))
 			.pipe( sourcemaps.init() )
 			.pipe( babel( {
 				presets: [
