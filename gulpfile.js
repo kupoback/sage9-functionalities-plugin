@@ -83,9 +83,7 @@ function isFixed( file ) {
  */
 function sassCompile( $read, $write ) {
 	const pluginOpts = [
-		autoprefixer( {
-			browsers: [ "cover 99.5%" ],
-		} ),
+		autoprefixer(),
 		cssnano(),
 	];
 	return function sassCompiler( done ) {

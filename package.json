@@ -51,5 +51,8 @@
 			"@babel/preset-env",
 			"@babel/react"
 		]
-	}
+	},
+	"browserslist": [
+		"cover 99.5%"
+	]
 }
